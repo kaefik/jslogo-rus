@@ -2311,7 +2311,7 @@ function LogoInterpreter(turtle, stream, savehook)
     return color;
   }
 
-  def(["setpencolor", "setpc", "setcolor"], function(color) {
+  def(["setpencolor", "setpc", "setcolor", "нов_цвет", "нц"], function(color) {
     turtle.color = parseColor(color);
   });
 
@@ -2322,7 +2322,7 @@ function LogoInterpreter(turtle, stream, savehook)
     PALETTE[colornumber] = parseColor(color);
   });
 
-  def(["setpensize", "setwidth", "setpw"], function(a) {
+  def(["setpensize", "setwidth", "setpw", "нов_размер", "нрз"], function(a) {
     if (Type(a) === 'list')
       turtle.penwidth = aexpr(a[0]);
     else
@@ -2332,7 +2332,7 @@ function LogoInterpreter(turtle, stream, savehook)
   // Not Supported: setpenpattern
   // Not Supported: setpen
 
-  def(["setbackground", "setbg", "setscreencolor", "setsc"], function(color) {
+  def(["setbackground", "setbg", "setscreencolor", "setsc", "нов_фон"], function(color) {
     turtle.bgcolor = parseColor(color);
   });
 
