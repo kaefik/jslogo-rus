@@ -1,5 +1,5 @@
 //
-// Logo Interpreter in Javascript
+// Logo Interpreter in Javascript using Russian commands
 //
 
 // Copyright (C) 2011 Joshua Bell
@@ -1811,7 +1811,7 @@ function LogoInterpreter(turtle, stream, savehook)
 
   // 3.1 Transmitters
 
-  def(["print", "pr"], function(thing) {
+  def(["print", "pr", "пиши"], function(thing) {
     var s = Array.from(arguments).map(stringify_nodecorate).join(" ");
     return this.stream.write(s, "\n");
   }, {minimum: 0, maximum: -1});
@@ -1819,7 +1819,7 @@ function LogoInterpreter(turtle, stream, savehook)
     var s = Array.from(arguments).map(stringify_nodecorate).join("");
     return this.stream.write(s);
   }, {minimum: 0, maximum: -1});
-  def("show", function(thing) {
+  def(["show", "покажи"], function(thing) {
     var s = Array.from(arguments).map(stringify).join(" ");
     return this.stream.write(s, "\n");
   }, {minimum: 0, maximum: -1});
@@ -2148,10 +2148,10 @@ function LogoInterpreter(turtle, stream, savehook)
   //----------------------------------------------------------------------
   // 6.1 Turtle Motion
 
-  def(["forward", "fd"], function(a) { return turtle.move(aexpr(a)); });
-  def(["back", "bk"], function(a) { return turtle.move(-aexpr(a)); });
-  def(["left", "lt"], function(a) { return turtle.turn(-aexpr(a)); });
-  def(["right", "rt"], function(a) { return turtle.turn(aexpr(a)); });
+  def(["forward", "fd","вперед", "вп"], function(a) { return turtle.move(aexpr(a)); });
+  def(["back", "bk", "назад", "нд"], function(a) { return turtle.move(-aexpr(a)); });
+  def(["left", "lt", "налево", "лв"], function(a) { return turtle.turn(-aexpr(a)); });
+  def(["right", "rt","направо", "пр"], function(a) { return turtle.turn(aexpr(a)); });
 
   // Left arrow:
   def(["\u2190"], function() { return turtle.turn(-15); });
@@ -2169,11 +2169,11 @@ function LogoInterpreter(turtle, stream, savehook)
     turtle.position = [aexpr(l[0]), aexpr(l[1])];
   });
   def("setxy", function(x, y) { turtle.position = [aexpr(x), aexpr(y)]; });
-  def("setx", function(x) { turtle.position = [aexpr(x), undefined]; });
-  def("sety", function(y) { turtle.position = [undefined, aexpr(y)]; });
+  def(["setx", "нов_х"], function(x) { turtle.position = [aexpr(x), undefined]; });
+  def(["sety", "нов_у"], function(y) { turtle.position = [undefined, aexpr(y)]; });
   def(["setheading", "seth"], function(a) { turtle.heading = aexpr(a); });
 
-  def("home", function() { return turtle.home(); });
+  def(["home", "домой"], function() { return turtle.home(); });
 
   def("arc", function(angle, radius) { return turtle.arc(aexpr(angle), aexpr(radius)); });
 
@@ -2196,10 +2196,10 @@ function LogoInterpreter(turtle, stream, savehook)
   // 6.3 Turtle and Window Control
   //
 
-  def(["showturtle", "st"], function() { turtle.visible = true; });
-  def(["hideturtle", "ht"], function() { turtle.visible = false; });
-  def("clean", function() { turtle.clear(); });
-  def(["clearscreen", "cs"], function() { turtle.clearscreen(); });
+  def(["showturtle", "st", "пч", "показать"], function() { turtle.visible = true; });
+  def(["hideturtle", "ht", "сч","спрятать"], function() { turtle.visible = false; });
+  def(["clean", "сотри"], function() { turtle.clear(); });
+  def(["clearscreen", "cs", "сг"], function() { turtle.clearscreen(); });
 
   def("wrap", function() { turtle.turtlemode = 'wrap'; });
   def("window", function() { turtle.turtlemode = 'window'; });
@@ -2267,8 +2267,8 @@ function LogoInterpreter(turtle, stream, savehook)
   //
   // 6.5 Pen and Background Control
   //
-  def(["pendown", "pd"], function() { turtle.pendown = true; });
-  def(["penup", "pu"], function() { turtle.pendown = false; });
+  def(["pendown", "pd", "по","пероопустить"], function() { turtle.pendown = true; });
+  def(["penup", "pu", "пп", "пероподнять"], function() { turtle.pendown = false; });
 
   def(["penpaint", "ppt"], function() { turtle.penmode = 'paint'; });
   def(["penerase", "pe"], function() { turtle.penmode = 'erase'; });
