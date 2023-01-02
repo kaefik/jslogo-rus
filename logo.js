@@ -3052,7 +3052,7 @@ function LogoInterpreter(turtle, stream, savehook)
       });
   });
 
-  def("repeat", function(count, statements) {
+  def(["repeat", "повторить"], function(count, statements) {
     count = aexpr(count);
     statements = reparse(lexpr(statements));
     var old_repcount = this.repcount;
