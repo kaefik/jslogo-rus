@@ -2168,14 +2168,16 @@ function LogoInterpreter(turtle, stream, savehook)
     if (l.length !== 2) throw err("{_PROC_}: Expected list of length 2", ERRORS.BAD_INPUT);
     turtle.position = [aexpr(l[0]), aexpr(l[1])];
   });
-  def("setxy", function(x, y) { turtle.position = [aexpr(x), aexpr(y)]; });
+  def(["setxy", "нм", "нов_место"], function(x, y) { turtle.position = [aexpr(x), aexpr(y)]; });
   def(["setx", "нов_х"], function(x) { turtle.position = [aexpr(x), undefined]; });
   def(["sety", "нов_у"], function(y) { turtle.position = [undefined, aexpr(y)]; });
   def(["setheading", "seth"], function(a) { turtle.heading = aexpr(a); });
 
   def(["home", "домой"], function() { return turtle.home(); });
 
-  def("arc", function(angle, radius) { return turtle.arc(aexpr(angle), aexpr(radius)); });
+  def(["arc", "дуга"], function(angle, radius) { return turtle.arc(aexpr(angle), aexpr(radius)); });
+
+  def(["circle", "круг"], function(radius) { return turtle.arc(aexpr(360), aexpr(radius)); });
 
   //
   // 6.2 Turtle Motion Queries
@@ -2218,7 +2220,7 @@ function LogoInterpreter(turtle, stream, savehook)
       });
   });
 
-  def("label", function(a) {
+  def(["label", "надпись"], function(a) {
     var s = Array.from(arguments).map(stringify_nodecorate).join(" ");
     return turtle.drawtext(s);
   }, {maximum: -1});
