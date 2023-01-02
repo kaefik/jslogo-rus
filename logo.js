@@ -3091,7 +3091,7 @@ function LogoInterpreter(turtle, stream, savehook)
     return this.repcount;
   });
 
-  def("if", function(tf, statements) {
+  def(["if", "если"], function(tf, statements) {
     if (Type(tf) === 'list')
       tf = evaluateExpression(reparse(tf));
 
@@ -3111,7 +3111,7 @@ function LogoInterpreter(turtle, stream, savehook)
 
   }, {maximum: 3});
 
-  def("ifelse", function(tf, statements1, statements2) {
+  def(["ifelse", "еслииначе"], function(tf, statements1, statements2) {
     if (Type(tf) === 'list')
       tf = evaluateExpression(reparse(tf));
 
